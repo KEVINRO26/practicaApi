@@ -1,0 +1,28 @@
+// importar las dependencias
+const express = require('express');
+const cors = require('cors');
+const bodyParser = require('body-parser');
+
+
+// crear la instancia de express
+const app = express();
+app.use(cors());
+
+// configurar bodyParser para parsear las solicitudes JSON
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+// definir una ruta GET para obtener una lista de usuarios
+app.get('/users', (req, res) => {
+  const users = [
+    { id: 1, name: 'Juan', email: 'juan@example.com' },
+    { id: 2, name: 'María', email: 'maria@example.com' },
+    { id: 3, name: 'Pedro', email: 'pedro@example.com' }
+  ];
+  res.json(users);
+});
+
+// iniciar el servidor
+app.listen(3000, () => {
+  console.log('API REST escuchando en el puerto 3000');
+});
